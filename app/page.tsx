@@ -8,56 +8,43 @@ function ThemeToggleButton() {
 
   function toggleTheme() {
     if (darkTheme) {
-      document.getElementById("themeToggleIcon").setAttribute("class", "bi bi-sun");
+      document.getElementById("themeToggleIcon").setAttribute("class", "btn btn-lg bi bi-sun");
       document.documentElement.setAttribute("data-bs-theme", "light");
     } else {
-      document.getElementById("themeToggleIcon").setAttribute("class", "bi bi-moon");
+      document.getElementById("themeToggleIcon").setAttribute("class", "btn btn-lg bi bi-moon");
       document.documentElement.setAttribute("data-bs-theme", "dark");
     }
     darkTheme = !darkTheme;
   }
 
   return (
-    <button type="button" className="btn" onClick={toggleTheme}>
-      <i className="bi bi-moon" id="themeToggleIcon"/>
-    </button>
-  );
-}
-
-function LinkedInProfile() {
-  return (
-    <a className="btn" href="https://www.linkedin.com/in/jordan-dennis-3238bb281/">
-      <i className="bi bi-linkedin"/>
-    </a>
-  );
-}
-
-function GithubProfile() {
-  return (
-    <a className="btn" href="https://github.com/jordan-dennis">
-      <i className="bi bi-github"/>
-    </a>
+    <button type="button" className="btn btn-lg bi bi-moon" id="themeToggleIcon" onClick={toggleTheme}/>
   );
 }
 
 function Socials() {
   return (
-    <ul className="nav nav-tabs">
+    <ul className="nav">
       <li className="nav-item">
-        <div className="nav-link active">
-          <i className="bi bi-house"/>
-        </div>
+        <a className="btn btn-lg bi bi-github" href="https://github.com/jordan-dennis"/>
       </li>
       <li className="nav-item">
-        <GithubProfile/>
-      </li>
-      <li className="nav-item">
-        <LinkedInProfile/>
+        <a className="btn btn-lg bi bi-linkedin" href="https://www.linkedin.com/in/jordan-dennis-3238bb281/"/>
       </li>
     </ul>
   );
 }
 
+function TopBar() {
+  return (
+    <div className="d-flex justify-content-between">
+      <Socials/>
+      <div class="nav-item">
+        <ThemeToggleButton/>
+      </div>
+    </div>
+  );
+}
 
 function PageTitle({ children }) {
   return (
@@ -89,8 +76,7 @@ function About({ children }) {
 export default function Home() {
   return (
     <main>
-      <Socials/>
-      <ThemeToggleButton/>
+      <TopBar/>
       <PageTitle>
         Jordan Dennis
       </PageTitle>
